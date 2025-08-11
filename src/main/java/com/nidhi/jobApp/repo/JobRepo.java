@@ -42,4 +42,34 @@ public class JobRepo {
     public List<JobPost> getAllJobs() {
         return jobs;
     }
+
+    public JobPost getJob(int postId) {
+        for( JobPost job : jobs){
+            if( job.getPostId() == postId){
+                return job;
+            }
+        }
+        return null;
+    }
+
+    public void updateJob(JobPost jobPost) {
+        for( JobPost jb : jobs){
+            if( jb.getPostId() == jobPost.getPostId()){
+                jb.setPostProfile( jobPost.getPostProfile());
+                jb.setPostDesc( jobPost.getPostDesc());
+                jb.setReqExperience( jobPost.getReqExperience());
+                jb.setPostTechStack( jobPost.getPostTechStack());
+            }
+        }
+    }
+
+    public void deleteJob( int jobId) {
+        for( JobPost j1 : jobs ){
+            if(j1.getPostId() == jobId){
+                jobs.remove(j1);
+            }
+        }
+        //can be done like
+        //jobs.removeIf(j1 -> j1.getPostId() == jobId);
+    }
 }
